@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.bd.Conexion;
+import modelo.usuario.Encrypt;
 import modelo.usuario.Usuario;
 
 /**
@@ -53,7 +54,7 @@ public class UsuarioDao {
 
     public int agregar(Usuario u) {
         int respuesta = 0;
-        String sql = "INSERT INTO USUARIO (CODIGOUSUARIO, NOMBREUSUARIO, CORREOUSUARIO, CEDULAUSUARIO, CAMBIOUSUARIO, PASSWORDUSUARIO, SESION_DESDE, SESION_HASTA,SESION_ACTIVA)"
+        String sql = "INSERT INTO USUARIO (CODIGOUSUARIO, NOMBREUSUARIO, CORREOUSUARIO, CEDULAUSUARIO, CAMBIOUSUARIO, PASSWORDUSUARIO, SESION_DESDE, SESION_HASTA, SESION_ACTIVA)"
                 + " VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             con = c.conectar();
@@ -75,26 +76,20 @@ public class UsuarioDao {
             }
         } catch (Exception e) {
         }
+        
         return respuesta;
     }
 
-    public int actualizar(Usuario cu) {
+    public int actualizar(Usuario u) {
+        
+        String sql = "UPDATE USUARIO SET NOMBREUSUARIO = '"+u.getNombre()+"', CORREOUSUARIO = '"+u.getCorreo()+"', CEDULAUSUARIO = '"+u.getCedula()+"', CAMBIOUSUARIO = '"+u.getCambio()+"', PASSWORDUSUARIO = '"+u.getPassword()+"', SESION_DESDE = '"+u.getDesde()+"', SESION_HASTA = '"+u.getHasta()+"', SESION_ACTIVA = '0' WHERE codigousuario='"+u.getCodigo()+"'";
         int respuesta = 0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
+        try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
-        }*/
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+        }
         return respuesta;
     }
 
@@ -108,6 +103,28 @@ public class UsuarioDao {
         }
     }
 
+    public Usuario buscarID(String id) {
+        String sql = "SELECT * FROM USUARIO where CODIGOUSUARIO= '" + id + "'";
+        Usuario u = new Usuario();
+        try {
+            con = c.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                u.setCodigo(rs.getString(1));
+                u.setNombre(rs.getString(2));
+                u.setCorreo(rs.getString(3));
+                u.setCedula(rs.getString(4));
+                u.setCambio(rs.getInt(5));
+                u.setPassword(rs.getString(6));
+                u.setDesde(rs.getString(7));
+                u.setHasta(rs.getString(8));
+                u.setSesion(rs.getInt(9));
+            }
+        } catch (Exception e) {
+        }
+        return u;
+    }
     /*public Usuario buscarCodigo(String codigo) {
         String sql = "SELECT * FROM USUARIO where CODIGOUSUARIO= '" + codigo + "'";
         Usuario u = new Usuario();
@@ -148,7 +165,9 @@ public class UsuarioDao {
     }
 
     public boolean login(String user, String pass) {
-        String sql = "SELECT COUNT(*) FROM USUARIO where CORREOUSUARIO='" + user + "' and passwordusuario='" + pass + "'";
+        Encrypt encry = new Encrypt();
+        String passEn = encry.getAES(pass);
+        String sql = "SELECT COUNT(*) FROM USUARIO where CORREOUSUARIO='" + user + "' and passwordusuario='" + passEn + "'";
         int respuesta = 0;
         try {
             con = c.conectar();
@@ -236,7 +255,9 @@ public class UsuarioDao {
     }
     
     public void cambioPass(String codigo, String pass){
-        String sql = "UPDATE usuario SET passwordusuario='" + pass + "', cambiousuario=1  where codigousuario='" + codigo + "'";
+        Encrypt encry = new Encrypt();
+        String passEn = encry.getAES(pass);
+        String sql = "UPDATE usuario SET passwordusuario='" + passEn + "', cambiousuario=1  where codigousuario='" + codigo + "'";
         int respuesta = 0;
         try {
             con = c.conectar();

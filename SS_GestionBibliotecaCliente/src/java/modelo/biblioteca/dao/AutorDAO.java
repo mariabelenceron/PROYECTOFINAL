@@ -12,6 +12,7 @@ import java.util.List;
 import modelo.bd.Conexion;
 import modelo.biblioteca.Autor;
 import modelo.biblioteca.Libro;
+import modelo.usuario.Encrypt;
 
 /**
  *
@@ -23,7 +24,7 @@ public class AutorDAO {
     ResultSet rs;
     Conexion c = new Conexion();
     Connection con;
-
+    
     public List listar() {
         List<Autor> lista = new ArrayList<>();
         String sql = "select * from autor";
@@ -47,6 +48,7 @@ public class AutorDAO {
     public int agregar(Autor a) {
         int respuesta = 0;
         String sql = "INSERT INTO AUTOR (CODIGOAUTOR, NOMBREAUTOR, APELLIDOAUTOR) VALUES(?,?,?)";
+       
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);

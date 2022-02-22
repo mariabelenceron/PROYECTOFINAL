@@ -5,7 +5,7 @@
     </welcome-file-list>
     <session-config>
         <session-timeout>
-            5
+            1
         </session-timeout>
     </session-config>
     <error-page>

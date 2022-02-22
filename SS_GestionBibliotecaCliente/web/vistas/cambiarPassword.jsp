@@ -1,3 +1,4 @@
+<%@page import="modelo.usuario.Encrypt"%>
 <%@page import="modelo.usuario.dao.UsuarioDao"%>
 <%@page import="modelo.usuario.Usuario"%>
 <!DOCTYPE html>
@@ -55,6 +56,8 @@
                             if (request.getParameter("btnCambioPass") != null) {
                                 String pass = request.getParameter("password");
                                 String nuevoPass = request.getParameter("nuevoPassword");
+                                Encrypt encry = new Encrypt();
+                                String passEn = encry.getAES(pass.trim());
                                 if (userDao.login(usuario.getCorreo().trim(), pass)) {
                                     userDao.cambioPass(usuario.getCodigo(), nuevoPass);
                                     out.write("Contraseña Cambiada");

@@ -4,8 +4,6 @@
     Author     : mabel
 --%>
 
-<%@page import="modelo.biblioteca.dao.DetallePrestamoDAO"%>
-<%@page import="modelo.biblioteca.DetallePrestamo"%>
 <%@page import="modelo.usuario.Auditoria"%>
 <%@page import="modelo.usuario.dao.AuditoriaDao"%>
 <%@page import="modelo.biblioteca.Prestamo"%>
@@ -35,7 +33,8 @@
                 <!-- Navbar -->
                 <%@include file="../componentes/Navbar.jsp" %>
 
-                <%                    AuditoriaDao auDao = new AuditoriaDao();
+                <%  
+                    AuditoriaDao auDao = new AuditoriaDao();
                     Auditoria au = new Auditoria(usuario.getNombre(), "PRESTAMOS", hora + ":" + minutos + ":" + segundos, usuario.getCodigo());
                     auDao.agregar(au);
                 %>
@@ -75,13 +74,7 @@
                                     </table>
                                 </div> <!-- Fin Tabla Comprobante  -->
                             </div>
-                            <%
-                                PrestamoDAO prestamoDAO = new PrestamoDAO();
-                                List<Prestamo> prestamo = prestamoDAO.listar();
-
-                                String codigo = "";
-
-                            %>
+                            
                             <div class="col-6">
                                 <div class="form-group row">
                                     <div class="col-6 mb-1" id="grupo_codigoComprobante">
@@ -89,28 +82,17 @@
                                         <form class="col-auto d-flex">
                                             <select id="buscarComprobante" name="buscarComprobante" class="form-control">
                                                 <option value="">- Seleccionar -</option>
-                                                <%  for (int i = 0; i < prestamo.size(); i++) {
-                                                        codigo = prestamo.get(i).getCodigoPrestamo();
-                                                %>
-                                                <option value=<%=codigo%>><%=codigo%></option>
-                                                <%}%>
-
+                                                
                                             </select>
 
                                             <button type="submit" class="btn btn-primary btn-administacion" value="Buscar"><i class="uil uil-search"></i></button>
                                         </form>
                                     </div>
-
-                                    <%
-                                        String codigobuscar = request.getParameter("buscarComprobante");
-                                        Prestamo com = prestamoDAO.buscarCodigo(codigobuscar);
-                                        String fecha = com.getFechaPrestamo();
-                                        String descripcion = com.getDescripcion();
-                                    %>     
+                                        
                                     <div class="col-6 mb-1" id="grupo_fechaPrestamo">
                                         <label class="pb-0 col-auto col-form-label" for="fechaPrestamo">Fecha:</label>
                                         <div class="col-auto">
-                                            <input type="date" id="fechaPrestamo" name="fechaPrestamo" class="form-control" value=<%=fecha%>>
+                                            <input type="date" id="fechaPrestamo" name="fechaPrestamo" class="form-control" placeholder="Ingrese la fecha">
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1" id="grupo_clientePrestamo">
@@ -122,7 +104,7 @@
                                     <div class="col-12 mb-1">
                                         <label class="pb-0 col-auto col-form-label" for="descripcionPrestamo">Descripcion:</label>
                                         <div class="col-auto">
-                                            <textarea id="descripcionPrestamo" name="descripcionPrestamo" rows="3" cols="50" class="form-control"><%=descripcion%></textarea>
+                                            <textarea id="descripcionPrestamo" name="descripcionPrestamo" rows="3" cols="50" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -138,15 +120,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            DetallePrestamoDAO detalleDAO = new DetallePrestamoDAO();
-                                            PrestamoDAO comDAO = new PrestamoDAO();
-                                            List<DetallePrestamo> detalle = detalleDAO.buscarCodigoPrestamo(codigobuscar);
-                                            for (int i = 0; i < detalle.size(); i++) {
-                                                Libro c = new Libro();
-                                                LibroDAO cuentaDAO = new LibroDAO();
-                                                c = cuentaDAO.buscarCodigo(detalle.get(i).getCodigoLibro().trim());
-                                        %>
                                         <tr>
                                             <td>
                                                 <p id="libroPrestamo"></p>
@@ -158,7 +131,6 @@
                                                 <p id="fecEntPrestamo"></p>
                                             </td>
                                         </tr>
-                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -181,8 +153,8 @@
                                     <div class="col-12">
                                         <form id="formularioPrestamo" action="../../ControladorPrestamo" method="POST">
                                             <div class="form-group row">
-                                                <% PrestamoDAO prestamosDAO = new PrestamoDAO();
-                                                    String codigoIngresar = prestamosDAO.condigo();%>
+                                                <% PrestamoDAO prestamoDAO = new PrestamoDAO();
+                                                    String codigoIngresar =prestamoDAO.condigo();%>
                                                 <div class="col-6 mb-1" id="grupo_codigoPrestamo">
                                                     <label class="pb-0 col-auto col-form-label" for="codigoPrestamo">Codigo:</label>
                                                     <div class="col-auto">
@@ -227,7 +199,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    
                                                 </tbody>
                                             </table>
                                             <!-- Botones Modal  -->

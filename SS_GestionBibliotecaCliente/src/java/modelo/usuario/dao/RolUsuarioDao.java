@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import modelo.bd.Conexion;
 import modelo.usuario.RolUsuario;
+import modelo.usuario.Usuario;
 
 /**
  *
@@ -64,25 +65,18 @@ public class RolUsuarioDao {
         return respuesta;
     }
     
-    /*public int actualizar(RolUsuario ru){
-        int respuesta =0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
+    public int actualizar(Usuario u) {
+        
+        String sql = "UPDATE USUARIO SET NOMBREUSUARIO = '"+u.getNombre()+"', CORREOUSUARIO = '"+u.getCorreo()+"', CEDULAUSUARIO = '"+u.getCedula()+"', CAMBIOUSUARIO = '"+u.getCambio()+"', PASSWORDUSUARIO = '"+u.getPassword()+"', SESION_DESDE = '"+u.getDesde()+"', SESION_HASTA = '"+u.getHasta()+"', SESION_ACTIVA = '0' WHERE codigousuario='"+u.getCodigo()+"'";
+        int respuesta = 0;
+        try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
+            rs = ps.executeQuery();
+        } catch (Exception e) {
         }
         return respuesta;
-    }*/
+    }
     
     public void borrar(String codigo){
         String sql = "DELETE FROM ROLUSUARIO WHERE CODIGOUSUARIO='"+codigo+"'";

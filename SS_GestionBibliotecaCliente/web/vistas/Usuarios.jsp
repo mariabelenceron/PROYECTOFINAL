@@ -95,7 +95,7 @@
                                             <form action="../ControladorUsuario" method="POST">
                                                 <input type="hidden" name="id" value="<%=usuarios.get(i).getCodigo()%>">
 
-                                                <button type='button' data-id ="<%=usuarios.get(i).getCodigo()%>" name = "<%=usuarios.get(i).getCodigo()%>" class='btn btn-success btnEditar' onclick="editarAutor(this)" ><i class='fas fa-edit'></i></button>
+                                                <!---<button type="submit" name="accion" value="Editar" class='btn btn-success btn'><i class='fas fa-edit'></i></i></button>-->
                                                 <button type="submit" name="accion" value="Borrar" class='btn btn-danger btnBorrar'><i class='fas fa-trash'></i></button>
                                             </form>
                                         </td>

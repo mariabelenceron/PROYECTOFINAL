@@ -12,6 +12,7 @@ import java.util.List;
 import modelo.bd.Conexion;
 import modelo.biblioteca.Autor;
 import modelo.biblioteca.Libro;
+import modelo.usuario.Encrypt;
 
 /**
  *

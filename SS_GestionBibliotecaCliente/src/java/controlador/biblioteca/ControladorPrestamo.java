@@ -93,16 +93,16 @@ public class ControladorPrestamo extends HttpServlet {
             l.setTitulo(titulo);
             l.setValorPrestamo(valorPrestamo);
             int r = dao.agregar(l);
-            response.sendRedirect("vistas/biblioteca/Libro.jsp");
+            response.sendRedirect("vistas/biblioteca/Prestamos.jsp");
 
 
         } else if (accion.compareTo("Borrar") == 0) {
             String id = request.getParameter("id");//id codigo del autor
             dao.borrar(id);
-            response.sendRedirect("vistas/biblioteca/Libro.jsp");
+            response.sendRedirect("vistas/biblioteca/Prestamos.jsp");
 
         } else {
-            response.sendRedirect("vistas/biblioteca/Libro.jsp");
+            response.sendRedirect("vistas/biblioteca/Prestamos.jsp");
         }
     }
 
