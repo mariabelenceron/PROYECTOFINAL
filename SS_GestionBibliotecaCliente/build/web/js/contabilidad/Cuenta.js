@@ -1,5 +1,4 @@
 //------------- Variables
-const formulario = document.querySelector('#formularioCuenta');
 const inputs = document.querySelectorAll('#formularioCuenta input');
 const btnRegistrar = document.querySelector('#btnRegistrar');
 const btnCancelar = document.querySelector('#btnCancelar');

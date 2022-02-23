@@ -1,6 +1,4 @@
 //------------- Variables
-const formulario = document.querySelector('#login_form');
-const inputs = document.querySelectorAll('#login_form input');
 const btnRegistrar = document.querySelector('#btnRegistrar');
 const btnVerificar = document.querySelector('#btnVerificar');
 

@@ -1,5 +1,4 @@
 //------------- Variables
-const formulario = document.querySelector('#formularioTipCue');
 const inputs = document.querySelectorAll('#formularioTipCue input');
 const btnRegistrar = document.querySelector('#btnRegistrar');
 const btnCancelar = document.querySelector('#btnCancelar');
