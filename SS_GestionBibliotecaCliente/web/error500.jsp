@@ -7,19 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
     <style>
-        :root {
-            --bluePrimary: #0081A7;
-            --whitePrimary: #E2F1FF;
-            --textPrimary: 'Poppins', sans-serif;
-        }
-
         body{
-            font-family: var(--textPrimary);
+            font-family: 'Poppins', sans-serif;
             font-weight: 300;
             font-size: 15px;
             line-height: 1.7;
-            color: var(--whitePrimary);
-            background-color: var(--bluePrimary);
+            color: #E2F1FF;
+            background-color: #0081A7;
             overflow-x: hidden;
         }
         .section{

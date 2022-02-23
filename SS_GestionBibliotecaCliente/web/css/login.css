@@ -1,26 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
-/* COMPONENTES GLOBALES */
-:root {
-    --bluePrimary: #0081A7;
-    --blueSecondary: #5AB6DE;
-
-    --blackPrimary: #2A2B38;
-    --grayPrimary: #c4c3ca;
-    --whitePrimary: #E2F1FF;
-
-    --blueSecondaryHover: #347CB3;
-
-    --textPrimary: 'Poppins', sans-serif;
-}
-
 body{
-	font-family: var(--textPrimary);
+	font-family: 'Poppins', sans-serif;
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 1.7;
-	color: var(--whitePrimary);
-	background-color: var(--bluePrimary);
+	color: #E2F1FF;
+	background-color: #0081A7;
 	overflow-x: hidden;
 }
 a { cursor: pointer; transition: all 200ms linear; }
@@ -54,7 +40,7 @@ h6 span{
 .card-front{
     width: 100%;
     height: 100%;
-    background-color: var(--blackPrimary);
+    background-color: #2A2B38;
     border-radius: 6px;
 }
 
@@ -85,7 +71,7 @@ h6 span{
     line-height: 22px;
     letter-spacing: 0.5px;
     outline: none;
-    color: var(--grayPrimary);
+    color: #c4c3ca;
     background-color: #1f2029;
     border: none;
     transition: all 200ms linear;
@@ -105,7 +91,7 @@ h6 span{
     font-size: 24px;
     line-height: 48px;
     text-align: left;
-    color: var(--bluePrimary);
+    color: #0081A7;
     transition: all 200ms linear;
 }
 .icon {
@@ -119,22 +105,22 @@ h6 span{
     color: black;
 }
 .form-group input:-ms-input-placeholder  {
-    color: var(--grayPrimary);
+    color: #c4c3ca;
     opacity: 0.7;
     transition: all 200ms linear;
 }
 .form-group input::-moz-placeholder  {
-    color: var(--grayPrimary);
+    color: #c4c3ca;
     opacity: 0.7;
     transition: all 200ms linear;
 }
 .form-group input:-moz-placeholder  {
-    color: var(--grayPrimary);
+    color: #c4c3ca;
     opacity: 0.7;
     transition: all 200ms linear;
 }
 .form-group input::-webkit-input-placeholder  {
-    color: var(--grayPrimary);
+    color: #c4c3ca;
     opacity: 0.7;
     transition: all 200ms linear;
 }
@@ -169,21 +155,21 @@ h6 span{
     -ms-flex-pack: center;
     text-align: center;
     border: none;
-    color: var(--whitePrimary);
+    color: #E2F1FF;
     box-shadow: 0 8px 24px 0 rgba(18, 248, 173,.2);
 }
 
 .btn-blue {
-    background-color: var(--bluePrimary);
+    background-color: #0081A7;
 }
 
 .btn:active,
 .btn:focus{  
-  background-color: var(--whitePrimary);
+  background-color: #E2F1FF;
   box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
 }
 .btn:hover{  
-  background-color: var(--whitePrimary);
+  background-color: #E2F1FF;
   box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
 }
 

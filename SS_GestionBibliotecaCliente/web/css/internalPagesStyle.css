@@ -1,23 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-:root {
-    --primary: #0081A7;
-    --light: #ffffff;
-    --grey: #efefef;
-    --black: #2A2B38;
-    --red: #E55D6D;
-    --green:#00A2A1;
-    
-    --redHover: #91002D;
-    --greenHover:#007678;
-    --primaryHover: #347CB3;
-}
 
 /* COMPONENTES GENERALES */
 body {
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    color: var(--primary);
+    color: #0081A7;
 }
 
 a:hover {
@@ -26,28 +14,28 @@ a:hover {
 
 .hover-sidebar :hover{
     background-color:#ffffff3a;
-    border-right: 6px solid var(--light) !important;
+    border-right: 6px solid #ffffff;
 }
 
-.bg-primary { background-color: var(--primary) !important; }
+.bg-primary { background-color: #0081A7}
 
-.bg-light { background-color: var(--light) !important; }
+.bg-light { background-color: #ffffff}
 
-.bg-grey { background-color: var(--grey) !important; }
+.bg-grey { background-color: #efefef }
 
-.bg-mix { background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0); }
+.bg-mix { background: linear-gradient(180deg, #ffffff 50%, #efefef 0); }
 
 .btn-primary {
-    background-color: var(--primary);
+    background-color: #0081A7;
     border: 0;
 }
 .btn-success {
-    background-color: var(--green);
+    background-color: #00A2A1;
     border: 0;
     margin: 0;
 }
 .btn-danger {
-    background-color: var(--red);
+    background-color: #E55D6D;
     border: 0;
     margin: 0;
 }
@@ -56,16 +44,16 @@ a:hover {
     margin: 0;
 }
 .btn-success:hover {
-    background-color: var(--greenHover);
+    background-color: #007678;
 }
 .btn-danger:hover {
-    background-color: var(--redHover);
+    background-color: #91002D;
 }
 
 .btn-primary:hover {
-    background-color: var(--light);
-    color: var(--black);
-    border: 1px solid var(--black);
+    background-color: #ffffff;
+    color: #2A2B38;
+    border: 1px solid #2A2B38;
 }
 .btn-administacion{
     margin-bottom: 10px;
@@ -73,12 +61,12 @@ a:hover {
 
 /*estilos para la tabla*/
 table th {
-    background-color: var(--primary) !important;
+    background-color: #0081A7 ;
     color: white;
 }
 table>tbody>tr>td {
-    vertical-align: middle !important;
-    padding: 4px 10px !important;
+    vertical-align: middle ;
+    padding: 4px 10px ;
 }
 tr td:last-child {
     text-align: center;
@@ -90,11 +78,11 @@ tr td:last-child {
     display: none;
 }
 .dataTables_info{
-    padding: 0 !important;
+    padding: 0 ;
 }
 .page-item.active .page-link{
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
+    background-color: #0081A7 ;
+    border-color: #0081A7 ;
 }
 #tablaAgregarLibro thead tr th:nth-child(1){
     width: 233px;
@@ -115,12 +103,12 @@ tr td:last-child {
 }
 /* MODAL */
 .modal-dialog{
-    max-width: 700px!important;
+    max-width: 700px;
 }
 
 /*para alinear los botones y cuadro de busqueda*/
 .btn-group, .btn-group-vertical {
-    position: absolute !important;
+    position: absolute ;
 }
 
 /*SIDEBAR*/
@@ -167,27 +155,27 @@ tr td:last-child {
 
 /* VALIDACION */
 .formulario__grupo-correcto .form-control{
-    border: 2px solid var(--green);
+    border: 2px solid #00A2A1;
 }
 
 .formulario__grupo-incorrecto .col-form-label {
-	color: var(--redHover);
+	color: #91002D;
 }
 
 .formulario__grupo-incorrecto .form-control {
-	border: 2px solid var(--redHover);
+	border: 2px solid #91002D;
 }
 
 .formulario__grupo-correcto__Search .form-control{
-    border: 2px solid var(--green);
+    border: 2px solid #00A2A1;
 }
 
 .formulario__grupo-incorrecto__Search .form-control {
-	border: 2px solid var(--redHover);
+	border: 2px solid #91002D;
 }
 
 .alerta{
-    margin-left: 25px!important;
+    margin-left: 25px;
 }
 
 /* BUSQUEDA */
@@ -206,7 +194,7 @@ tr td:last-child {
     line-height: 22px;
     letter-spacing: 0.5px;
     outline: none;
-    color: var(--black);
+    color: #2A2B38;
     border: none;
     transition: all 200ms linear;
     box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
@@ -229,13 +217,13 @@ tr td:last-child {
 }
 
 .subTitles{
-    color: var(--light);
+    color: #ffffff;
 }
 .subtitle-left{
     margin-left: 16px;
 }
 
 .lista{
-    color: var(--light);
+    color: #ffffff;
     padding: 16px;
 }
