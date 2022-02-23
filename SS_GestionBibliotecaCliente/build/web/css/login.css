@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+/* COMPONENTES GLOBALES */
+:root {
+    --bluePrimary: #0081A7;
+    --blueSecondary: #5AB6DE;
+
+    --blackPrimary: #2A2B38;
+    --grayPrimary: #c4c3ca;
+    --whitePrimary: #E2F1FF;
+
+    --blueSecondaryHover: #347CB3;
+
+    --textPrimary: 'Poppins', sans-serif;
+}
+
+body{
+	font-family: var(--textPrimary);
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 1.7;
+	color: var(--whitePrimary);
+	background-color: var(--bluePrimary);
+	overflow-x: hidden;
+}
+a { cursor: pointer; transition: all 200ms linear; }
+
+a:hover { text-decoration: none; }
+
+p { font-weight: 500; font-size: 14px; line-height: 1.7; }
+
+h4 { font-weight: 600; }
+
+h6 span{
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.section{
+    position: relative;
+    width: 100%;
+    display: block;
+}
+.full-height{ min-height: 100vh; }
+
+.card-3d-wrap {
+    width: 440px;
+    max-width: 100%;
+    height: 400px;
+    perspective: 800px;
+    margin-top: 40px;
+}
+
+.card-front{
+    width: 100%;
+    height: 100%;
+    background-color: var(--blackPrimary);
+    border-radius: 6px;
+}
+
+.center-wrap{
+    position: absolute;
+    width: 100%;
+    padding: 0 35px;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0, -50%, 35px) perspective(100px);
+    z-index: 20;
+    display: block;
+}
+.form-group{ 
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.form-style {
+    padding: 13px 20px;
+    padding-left: 55px;
+    height: 48px;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    outline: none;
+    color: var(--grayPrimary);
+    background-color: #1f2029;
+    border: none;
+    transition: all 200ms linear;
+    box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+.form-style:focus,
+.form-style:active {
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+.input-icon {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 48px;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: left;
+    color: var(--bluePrimary);
+    transition: all 200ms linear;
+}
+.icon {
+    height: 48px;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: left;
+    transition: all 200ms linear;
+}
+.icon:hover{
+    color: black;
+}
+.form-group input:-ms-input-placeholder  {
+    color: var(--grayPrimary);
+    opacity: 0.7;
+    transition: all 200ms linear;
+}
+.form-group input::-moz-placeholder  {
+    color: var(--grayPrimary);
+    opacity: 0.7;
+    transition: all 200ms linear;
+}
+.form-group input:-moz-placeholder  {
+    color: var(--grayPrimary);
+    opacity: 0.7;
+    transition: all 200ms linear;
+}
+.form-group input::-webkit-input-placeholder  {
+    color: var(--grayPrimary);
+    opacity: 0.7;
+    transition: all 200ms linear;
+}
+.form-group input:focus:-ms-input-placeholder  {
+    opacity: 0;
+    transition: all 200ms linear;
+}
+.form-group input:focus::-moz-placeholder  {
+    opacity: 0;
+    transition: all 200ms linear;
+}
+.form-group input:focus:-moz-placeholder  {
+    opacity: 0;
+    transition: all 200ms linear;
+}
+.form-group input:focus::-webkit-input-placeholder  {
+    opacity: 0;
+    transition: all 200ms linear;
+}
+.btn{  
+    border-radius: 4px;
+    height: 44px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 200ms linear;
+    padding: 0 30px;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    text-align: center;
+    border: none;
+    color: var(--whitePrimary);
+    box-shadow: 0 8px 24px 0 rgba(18, 248, 173,.2);
+}
+
+.btn-blue {
+    background-color: var(--bluePrimary);
+}
+
+.btn:active,
+.btn:focus{  
+  background-color: var(--whitePrimary);
+  box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
+}
+.btn:hover{  
+  background-color: var(--whitePrimary);
+  box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
+}
+
+.icono_tamano i{
+    font-size: 13px;
+}

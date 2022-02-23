@@ -1,37 +1,35 @@
 //------------- Variables
-const formulario = document.querySelector('#formularioLibro');
-const inputs = document.querySelectorAll('#formularioLibro input');
+const formulario = document.querySelector('#formularioAutor');
+const inputs = document.querySelectorAll('#formularioAutor input');
 const btnRegistrar = document.querySelector('#btnRegistrar');
 const btnCancelar = document.querySelector('#btnCancelar');
 
-// Función para abrir el modal de agregar libros
-function agregarLibro() {
-    // document.querySelector('#codigoLibro').disabled = false;
-    document.getElementById("formularioLibro").reset();
-    $('#modalLibro').modal('show');
+// Función para abrir el modal de agregar autores
+function agregarAutor() {
+    document.getElementById("formularioAutor").reset();
+    $('#modalAutor').modal('show');
 }
+
 
 /* =================================== VALIDACIONES ===================================*/
 // -------------Variables
 // Valores posibles a validar
-//const expresiones = {
-//    letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-//    usuario: /^[a-zA-Z0-9Ññ ]*$/, // Letras, numeros, guion y guion_bajo
-//    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-//    correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-//    telefono: /^\d{7,10}$/,
-//    numeros: /^\d+$/,
-//    fecha: /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/,
-//    numerosLetras: /^[a-zA-Z0-9Ññ ]*$/
-//}
+const expresiones = {
+    letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    usuario: /^[a-zA-Z0-9Ññ ]*$/, // Letras, numeros, guion y guion_bajo
+    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+    correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    telefono: /^\d{7,10}$/,
+    numeros: /^\d+$/,
+    fecha: /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/,
+    numerosLetras: /^[a-zA-Z0-9Ññ ]*$/
+}
 
 // Inputs
 const campos = {
-    codigoLibro: false,
-    isbnLibro: false,
-    tituloLibro: false,
-    autorLibro: false,
-    valorPrestamoLibro: false
+    codigoAutor: false,
+    nombreAutor: false,
+    apellidoAutor: false
 }
 
 
@@ -41,17 +39,14 @@ btnCancelar.addEventListener('click', cancelarFormulario);
 //Funcion para validar el formulario
 const validarInputs = (e) => {
     switch (e.target.name) {
-        case "codigoLibro":
-            validarCampo(expresiones.numerosLetras, e.target, 'codigoLibro', 'Solo se admiten letras y números');
+        case "codigoAutor":
+            validarCampo(expresiones.numerosLetras, e.target, 'codigoAutor', 'Solo se admiten letras y números');
             break;
-        case "isbnLibro":
-            validarCampo(expresiones.numeros, e.target, 'isbnLibro', 'Solo se admiten números');
+        case "nombreAutor":
+            validarCampo(expresiones.letras, e.target, 'nombreAutor', 'Solo se admiten letras');
             break;
-        case "tituloLibro":
-            validarCampo(expresiones.numerosLetras, e.target, 'tituloLibro', 'Solo se admiten letras y números');
-            break;
-        case "valorPrestamoLibro":
-            validarCampo(expresiones.numeros, e.target, 'valorPrestamoLibro', 'Solo se admiten números');
+        case "apellidoAutor":
+            validarCampo(expresiones.letras, e.target, 'apellidoAutor', 'Solo se admiten letras');
             break;
     }
 
@@ -60,7 +55,7 @@ const validarInputs = (e) => {
 
 // Funcion que valida que todos los campos del formulario esten correctos
 function validarFormulario() {
-    if (campos.codigoLibro && campos.isbnLibro && campos.tituloLibro && campos.autorLibro && campos.valorPrestamoLibro) {
+    if (campos.codigoAutor && campos.nombreAutor && campos.apellidoAutor) {
         desbloquearBtnRegistrar();
     } else {
         bloquearBtnRegistrar();
@@ -85,16 +80,6 @@ inputs.forEach((input) => {
     input.addEventListener('keyup', validarInputs);
     input.addEventListener('blur', validarInputs);
 });
-
-$(document).on('change', '#autorLibro', function () {
-    autor_select();
-    campos.autorLibro = true;
-    validarFormulario();
-});
-function autor_select() {
-    let autorSeleccionado = $('select[name="autorLibro"] option:selected').val();
-    return autorSeleccionado;
-}
 
 /* ------------------------------------------------------------- UI -------------------------------------------------------------*/
 // Función para bloquear el boton de registrar, poner formatos
