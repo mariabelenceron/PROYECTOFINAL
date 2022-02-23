@@ -1,3 +1,5 @@
+/* global Console */
+
 document.addEventListener("DOMContentLoaded", ()=>{
     const boton = document.querySelector("#btnCrearPdf");
     const impresionCompleta = document.querySelector("#contenedorPadre");
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             })
             .from(elementoParaConvertir)
             .save()
-            .catch(console.error("Existe un error"));
+            .catch(Console.error("Existe un error"));
         }); 
 });
 

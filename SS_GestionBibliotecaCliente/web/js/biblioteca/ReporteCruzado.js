@@ -1,7 +1,9 @@
+/* global Console */
+
 document.addEventListener("DOMContentLoaded", ()=>{
     const boton = document.querySelector("#btnCrearPdf");
     const impresionCompleta = document.querySelector("#contenedorPadre");
-    
+    /* eslint no-console: "error" */
     boton.addEventListener("click", ()=>{
         const elementoParaConvertir = impresionCompleta;
         html2pdf()
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             })
             .from(elementoParaConvertir)
             .save()
-            .catch(console.error("Existe un error"));
+            .catch(Console.error("Existe un error"));
         }); 
 });
 
