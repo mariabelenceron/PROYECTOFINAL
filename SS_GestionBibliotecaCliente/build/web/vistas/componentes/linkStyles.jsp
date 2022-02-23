@@ -1,8 +1,4 @@
-<%-- 
-    Document   : linkStyles
-    Created on : 29 nov. 2021, 11:25:53
-    Author     : mabel
---%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page session="true"%>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">

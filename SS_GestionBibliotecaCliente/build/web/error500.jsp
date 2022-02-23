@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,16 +34,13 @@
 <body>
     <div class="container">
         <div class="row full-height justify-content-center">
-            <div class="col-4 text-center align-self-center">
-                <i class="uil uil-exclamation-triangle icon-error"></i>
-            </div>
             <div class="col-8 text-center align-self-center py-5">
                 <div class="section pb-5 pt-5 pt-sm-2 text-center">
                     <h1 class="mb-4 pb-3">
                         Se ha producido un Error!
                     </h1>
                     <p class="mb-4 pb-3">
-                        El recurso no ha sido encontrado. Verifique su dirección url y vuelva a intentarlo.
+                        El recurso no ha sido encontrado. Verifique su direcciÃ³n url y vuelva a intentarlo.
                     </p>
                 </div>
             </div>
