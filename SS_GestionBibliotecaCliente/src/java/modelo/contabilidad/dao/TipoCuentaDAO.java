@@ -118,7 +118,7 @@ public class TipoCuentaDAO {
             while (rs.next()) {                
                 TipoCuenta tc = new TipoCuenta();
                 tc.setCodigo(rs.getString(1));
-                tc.setNombre(rs.getString(2));;
+                tc.setNombre(rs.getString(2));
                 lista.add(tc); 
             }
         } catch (Exception e) {

@@ -48,11 +48,7 @@ public class Validacion {
                 int dec = (aux + 1) * 10;
                 if ((dec - suma) == Integer.parseInt(String.valueOf(value.charAt(value.length() - 1)))) {
                     return true;
-                } else if (suma % 10 == 0 && value.charAt(value.length() - 1) == '0') {
-                    return true;
-                } else {
-                    return false;
-                }
+                } else return suma % 10 == 0 && value.charAt(value.length() - 1) == '0';
             }
         }else{
             return false;
@@ -63,60 +59,36 @@ public class Validacion {
         Pattern pat = Pattern.compile("^[a-zA-ZÀ-ÿ\\s]{1,40}$");
         Matcher mat = pat.matcher(value);
         int suma = 0;
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 
     public boolean correo(String value) {
         Pattern pat = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
         Matcher mat = pat.matcher(value);
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 
     public boolean telefono(String value) {
         Pattern pat = Pattern.compile("^\\d{7,10}$");
         Matcher mat = pat.matcher(value);
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 
     public boolean numeros(String value) {
         Pattern pat = Pattern.compile("^\\d+$");
         Matcher mat = pat.matcher(value);
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 
     public boolean hora(String value) {
         Pattern pat = Pattern.compile("^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])$");
         Matcher mat = pat.matcher(value);
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 
     public boolean numerosLetras(String value) {
         Pattern pat = Pattern.compile("^[a-zA-Z0-9Ññ ]*$");
         Matcher mat = pat.matcher(value);
-        if (value != null && mat.matches() && value.trim().length()!=0) {
-            return true;
-        }else{
-            return false;
-        }
+        return value != null && mat.matches() && value.trim().length()!=0;
     }
 }

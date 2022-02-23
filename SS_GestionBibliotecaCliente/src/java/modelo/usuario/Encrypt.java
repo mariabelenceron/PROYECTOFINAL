@@ -50,7 +50,7 @@ public class Encrypt implements Serializable {
     public String getAESDecrypt(String data) {
         byte[] iv = new byte[16];
         try {
-            if (data != "") {
+            if (!"".equals(data)) {
                 IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
                 SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
                 KeySpec keySpec = new PBEKeySpec(secretKeyAES.toCharArray(), saltAES.getBytes(), 65536, 256);
