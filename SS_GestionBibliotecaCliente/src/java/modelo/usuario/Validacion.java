@@ -73,7 +73,6 @@ public class Validacion {
     public boolean correo(String value) {
         Pattern pat = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
         Matcher mat = pat.matcher(value);
-        int suma = 0;
         if (value != null && mat.matches() && value.trim().length()!=0) {
             return true;
         }else{

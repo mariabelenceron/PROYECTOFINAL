@@ -27,7 +27,8 @@ public class Encrypt implements Serializable {
         Pattern pat = Pattern.compile("^[a-zA-Z0-9Ññ ]*$");
         Matcher mat = pat.matcher(data);
         try {
-            if (mat.matches() && data != "") {
+            if (data != null && mat.matches() && data.trim().length()!=0) {
+
                 byte[] iv = new byte[16];
                 IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
                 SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -37,7 +38,7 @@ public class Encrypt implements Serializable {
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
                 return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes("UTF-8")));
-            } else {
+            }else{
                 return "Error";
             }
         } catch (Exception e) {

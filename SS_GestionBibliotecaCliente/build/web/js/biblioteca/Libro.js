@@ -14,16 +14,16 @@ function agregarLibro() {
 /* =================================== VALIDACIONES ===================================*/
 // -------------Variables
 // Valores posibles a validar
-//const expresiones = {
-//    letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-//    usuario: /^[a-zA-Z0-9Ññ ]*$/, // Letras, numeros, guion y guion_bajo
-//    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-//    correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-//    telefono: /^\d{7,10}$/,
-//    numeros: /^\d+$/,
-//    fecha: /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/,
-//    numerosLetras: /^[a-zA-Z0-9Ññ ]*$/
-//}
+const expresiones = {
+    letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    usuario: /^[a-zA-Z0-9Ññ ]*$/, // Letras, numeros, guion y guion_bajo
+    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+    correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    telefono: /^\d{7,10}$/,
+    numeros: /^\d+$/,
+    fecha: /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/,
+    numerosLetras: /^[a-zA-Z0-9Ññ ]*$/
+}
 
 // Inputs
 const campos = {
