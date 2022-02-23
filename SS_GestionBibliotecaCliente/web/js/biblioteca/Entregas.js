@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             })
             .from(elementoParaConvertir)
             .save()
-            .catch(e => console.error(e));
+            .catch(console.error("Existe un error"));
         }); 
 });
 
