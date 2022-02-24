@@ -41,7 +41,6 @@ public class ControladorUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -110,7 +109,6 @@ public class ControladorUsuario extends HttpServlet {
             String[] pre = request.getParameterValues("checkPrestamos");//8
             String[] rb = request.getParameterValues("checkReportesB");//9*/
 
-            //USU,1; TC,1; CUE,1; COM,1; RC,1; AUT,1; LIB,1; PRE,1; RB,1;
             String roles = "USU," + usu[0]
                     + ";TC," + tc[0] + ";CUE," + cue[0] + ";COM," + com[0] + ";RC," + rc[0]
                     + ";AUT," + aut[0] + ";LIB," + lib[0] + ";PRE," + pre[0] + ";RB," + rb[0] + ";";
@@ -154,7 +152,6 @@ public class ControladorUsuario extends HttpServlet {
             String[] pre = request.getParameterValues("checkPrestamos");//8
             String[] rb = request.getParameterValues("checkReportesB");//9*/
 
-            //USU,1; TC,1; CUE,1; COM,1; RC,1; AUT,1; LIB,1; PRE,1; RB,1;
             String roles = "USU," + usu[0]
                     + ";TC," + tc[0] + ";CUE," + cue[0] + ";COM," + com[0] + ";RC," + rc[0]
                     + ";AUT," + aut[0] + ";LIB," + lib[0] + ";PRE," + pre[0] + ";RB," + rb[0] + ";";

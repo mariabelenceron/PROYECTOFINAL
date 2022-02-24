@@ -41,7 +41,6 @@ public class ControladorComprobante extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -89,7 +88,7 @@ public class ControladorComprobante extends HttpServlet {
             comprobante.setCodigoComprobante(codigo);
             comprobante.setFecha(fecha);
             comprobante.setObservaciones(observacion);
-            int r = comprobanteDAO.agregar(comprobante);
+            comprobanteDAO.agregar(comprobante);
             
             /*Detalle comprobante*/
             String [] cuentas = request.getParameterValues("cuentaComprobante");
@@ -98,24 +97,18 @@ public class ControladorComprobante extends HttpServlet {
             comprobante.setCodigoComprobante(cuentas[0]);
             comprobante.setFecha(debe[0]);
             comprobante.setObservaciones(haber[0]);
-            //int r = comprobanteDAO.agregar(comprobante);
-            
+ 
             for (int i = 0; i < cuentas.length; i++) {
                 detalle.setCodigoComprobante(codigo);
                 detalle.setCodigoCuenta(cuentas[i]);
                 detalle.setDebeDetalle(Float.parseFloat(debe[i]));
                 detalle.setHaberDetalle(Float.parseFloat(haber[i]));
-                r = detalleDAO.agregar(detalle);
+                detalleDAO.agregar(detalle);
             }
              
             response.sendRedirect("vistas/contabilidad/Comprobantes.jsp");
             
-        }/*else if(accion.compareTo("Borrar")==0){         
-            String id = request.getParameter("id");//id codigo del tipo cuenta
-            dao.borrar(id);
-            response.sendRedirect("vistas/contabilidad/Cuenta.jsp");
-            
-        }*/else{
+        }else{
             response.sendRedirect("vistas/contabilidad/Comprobantes.jsp");
         }
         

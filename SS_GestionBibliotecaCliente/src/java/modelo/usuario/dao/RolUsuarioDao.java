@@ -24,26 +24,6 @@ public class RolUsuarioDao {
     Conexion c =new Conexion();
     Connection con;
     
-    /*public List listar(){
-        List<Usuario> lista = new ArrayList<>();
-        String sql = "SELECT * FROM USUARIO";
-        
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                Usuario u = new Usuario();
-                u.setCodigo(rs.getString(1));
-                u.setUsuario(rs.getString(2));
-                u.setPassword(rs.getString(3));
-                lista.add(u);  
-            }
-        } catch (Exception e) {
-        }
-        return lista;
-    }*/
-    
     public int agregar(RolUsuario ru){
         int respuesta =0;
         String sql = "INSERT INTO ROLUSUARIO (CODIGOROL, CODIGOUSERROLU, ROLESROLU)"
@@ -109,8 +89,6 @@ public class RolUsuarioDao {
     public HashMap<String,Integer> roles(String codigo){
         HashMap<String,Integer> roles = new HashMap<String,Integer>();
         RolUsuario ru = buscarCodigoUsuario(codigo);
-        //ejemplo
-        //USU,1;TC,1;CUE,1;COM,1;RC,1;AUT,1;LIB,1;PRE,1;RB,1;
         String[] rol = ru.getRoles().split(";");
         for (int i = 0; i < rol.length; i++) {
             String[] rolAux = rol[i].split(",");
@@ -173,7 +151,6 @@ public class RolUsuarioDao {
     
     private int contadorFilas() {
         String sql = "SELECT COUNT(*)FROM ROLUSUARIO";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();
@@ -186,23 +163,5 @@ public class RolUsuarioDao {
         }
         return contador;
     }
-    /*public List buscarNombre(String nombre){
-        List<Usuario> lista = new ArrayList<>();
-        String sql = "SELECT * FROM USUARIO WHERE USERUSUARIO like '%"+nombre+"%'";
-        
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                Usuario u = new Usuario();
-                u.setCodigo(rs.getString(1));
-                u.setUsuario(rs.getString(2));
-                u.setPassword(rs.getString(3));
-                lista.add(u); 
-            }
-        } catch (Exception e) {
-        }
-        return lista;
-    }*/
+    
 }

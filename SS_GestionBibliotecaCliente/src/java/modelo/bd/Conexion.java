@@ -6,6 +6,7 @@ package modelo.bd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,12 +18,9 @@ public class Conexion {
     String user = "PROYECTO";
     String pass = "123";
     
-    public Connection conectar(){
-        try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            con = DriverManager.getConnection(url,user,pass);
-        }catch (Exception e){
-        }
+    public Connection conectar() throws ClassNotFoundException, SQLException{
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        con = DriverManager.getConnection(url,user,pass);
         return con;
     }
 }

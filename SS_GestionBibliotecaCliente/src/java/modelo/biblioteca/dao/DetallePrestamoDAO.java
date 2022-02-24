@@ -23,27 +23,6 @@ public class DetallePrestamoDAO {
     Conexion c = new Conexion();
     Connection con;
 
-    public List listar() {
-        List<DetallePrestamo> lista = new ArrayList<>();
-        String sql = "select * from DETALLEPRESTAMO";
-        /*
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                DetallePrestamo d = new DetallePrestamo();
-                d.setCodigoComprobante(rs.getString(1));
-                d.setCodigoCuenta(rs.getString(2));
-                d.setDebeDetalle(rs.getFloat(3));
-                d.setHaberDetalle(rs.getFloat(4));
-                lista.add(d);  
-            }
-        } catch (Exception e) {
-        }*/
-        return lista;
-    }
-
     public int agregar(DetallePrestamo d) {
         int respuesta = 0;
         String sql = "INSERT INTO DETALLEPRESTAMO (CODIGOPRESTAMO, CODIGOLIBRO, CANTIDADPRESTAMO, FECHAENTREGAPRESTAMO) VALUES(?,?,?,?)";
@@ -65,36 +44,6 @@ public class DetallePrestamoDAO {
         return respuesta;
     }
 
-    public int actualizar(DetallePrestamo com) {
-        int respuesta = 0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
-        }*/
-        return respuesta;
-    }
-
-    public void borrar(String codigo) {
-        String sql = "DELETE FROM CUENTA WHERE CODIGOCUENTA='" + codigo + "'";
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.executeQuery();
-        } catch (Exception e) {
-        }
-    }
-
     public List buscarCodigoPrestamo(String codigo) {
         String sql = "select * from DETALLEPRESTAMO where CODIGOPRESTAMO = '" + codigo + "'";
         List<DetallePrestamo> lista = new ArrayList<>();
@@ -109,26 +58,6 @@ public class DetallePrestamoDAO {
                 d.setCantidad(rs.getInt(3));
                 d.setFechaEntrega(rs.getString(4));
                 lista.add(d);
-            }
-        } catch (Exception e) {
-        }
-        return lista;
-    }
-
-    /*public List buscarNombre(String nombre){
-        List<Comprobante> lista = new ArrayList<>();
-        String sql = "select * from cuenta where NOMBRECUENTA like '%"+nombre+"%'";
-        
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                Comprobante com = new Comprobante();
-                com.setCodigoComprobante(rs.getString(1));
-                com.setFecha(rs.getString(2));
-                com.setObservaciones(rs.getString(3));
-                lista.add(com); 
             }
         } catch (Exception e) {
         }
@@ -174,7 +103,6 @@ public class DetallePrestamoDAO {
 
     private int contadorFilas() {
         String sql = "SELECT COUNT(*)FROM CUENTA";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();

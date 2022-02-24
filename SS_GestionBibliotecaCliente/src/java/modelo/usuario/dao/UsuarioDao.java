@@ -7,6 +7,7 @@ package modelo.usuario.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class UsuarioDao {
     Conexion c = new Conexion();
     Connection con;
 
-    public List listar() {
+    public List listar() throws ClassNotFoundException {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM USUARIO";
 
@@ -47,12 +48,12 @@ public class UsuarioDao {
                 u.setHasta(rs.getString(8));
                 lista.add(u);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
 
-    public int agregar(Usuario u) {
+    public int agregar(Usuario u) throws ClassNotFoundException {
         int respuesta = 0;
         String sql = "INSERT INTO USUARIO (CODIGOUSUARIO, NOMBREUSUARIO, CORREOUSUARIO, CEDULAUSUARIO, CAMBIOUSUARIO, PASSWORDUSUARIO, SESION_DESDE, SESION_HASTA, SESION_ACTIVA)"
                 + " VALUES(?,?,?,?,?,?,?,?,?)";
@@ -74,13 +75,13 @@ public class UsuarioDao {
             } else {
                 respuesta = 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         
         return respuesta;
     }
 
-    public int actualizar(Usuario u) {
+    public int actualizar(Usuario u) throws ClassNotFoundException {
         
         String sql = "UPDATE USUARIO SET NOMBREUSUARIO = '"+u.getNombre()+"', CORREOUSUARIO = '"+u.getCorreo()+"', CEDULAUSUARIO = '"+u.getCedula()+"', CAMBIOUSUARIO = '"+u.getCambio()+"', PASSWORDUSUARIO = '"+u.getPassword()+"', SESION_DESDE = '"+u.getDesde()+"', SESION_HASTA = '"+u.getHasta()+"', SESION_ACTIVA = '0' WHERE codigousuario='"+u.getCodigo()+"'";
         int respuesta = 0;
@@ -88,18 +89,18 @@ public class UsuarioDao {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return respuesta;
     }
 
-    public void borrar(String codigo) {
+    public void borrar(String codigo) throws ClassNotFoundException {
         String sql = "DELETE FROM USUARIO WHERE CODIGOUSUARIO='" + codigo + "'";
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 
@@ -125,23 +126,8 @@ public class UsuarioDao {
         }
         return u;
     }
-    /*public Usuario buscarCodigo(String codigo) {
-        String sql = "SELECT * FROM USUARIO where CODIGOUSUARIO= '" + codigo + "'";
-        Usuario u = new Usuario();
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                u.setCodigo(rs.getString(1));
-                u.setCorreo(rs.getString(2));
-                u.setPassword(rs.getString(3));
-            }
-        } catch (Exception e) {
-        }
-        return u;
-    }*/
-    public Usuario buscarCorreo(String correo) {
+
+    public Usuario buscarCorreo(String correo) throws ClassNotFoundException {
         String sql = "SELECT * FROM USUARIO where CORREOUSUARIO= '" + correo + "'";
         Usuario u = new Usuario();
         try {
@@ -159,12 +145,12 @@ public class UsuarioDao {
                 u.setHasta(rs.getString(8));
                 u.setSesion(rs.getInt(9));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return u;
     }
 
-    public boolean login(String user, String pass) {
+    public boolean login(String user, String pass) throws ClassNotFoundException {
         Encrypt encry = new Encrypt();
         String passEn = encry.getAES(pass);
         String sql = "SELECT COUNT(*) FROM USUARIO where CORREOUSUARIO='" + user + "' and passwordusuario='" + passEn + "'";
@@ -176,13 +162,13 @@ public class UsuarioDao {
             while (rs.next()) {
                 respuesta = rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
 
         return respuesta == 1;
     }
 
-    public List buscarNombre(String nombre) {
+    public List buscarNombre(String nombre) throws ClassNotFoundException {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM USUARIO WHERE USERUSUARIO like '%" + nombre + "%'";
 
@@ -202,16 +188,14 @@ public class UsuarioDao {
                 ps.setString(8, u.getHasta());
                 lista.add(u);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
 
-    public boolean accesoHoraAGCA(String correo) {
+    public boolean accesoHoraAGCA(String correo) throws ClassNotFoundException {
         String sql = "SELECT * FROM USUARIO where CORREOUSUARIO= '" + correo + "'";
         Usuario u = new Usuario();
-        String sesion_desde = "";
-        String sesion_hasta = "";
         boolean respuesta = false;
         try {
             con = c.conectar();
@@ -227,7 +211,7 @@ public class UsuarioDao {
                 ps.setString(7, u.getDesde());
                 ps.setString(8, u.getHasta());
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
 
         Date hora_actual = new Date();
@@ -241,8 +225,8 @@ public class UsuarioDao {
             Date hora_inicial = formateador.parse(u.getDesde().trim());
             Date hora_final = formateador.parse(u.getHasta().trim());
             Date horaDate = formateador.parse(hora.trim());
-            boolean comparcionInicial = horaDate.compareTo(hora_inicial) == 1 || horaDate.compareTo(hora_inicial) == 0;
-            boolean comparacionFinal = horaDate.compareTo(hora_final) == -1;
+            boolean comparcionInicial = horaDate.compareTo(hora_inicial) < 1 || horaDate.compareTo(hora_inicial) == 0;
+            boolean comparacionFinal = horaDate.compareTo(hora_final) < -1;
 
             if (comparcionInicial && comparacionFinal) {
                 respuesta = true;
@@ -254,27 +238,25 @@ public class UsuarioDao {
         return respuesta;
     }
     
-    public void cambioPass(String codigo, String pass){
+    public void cambioPass(String codigo, String pass) throws ClassNotFoundException{
         Encrypt encry = new Encrypt();
         String passEn = encry.getAES(pass);
         String sql = "UPDATE usuario SET passwordusuario='" + passEn + "', cambiousuario=1  where codigousuario='" + codigo + "'";
-        int respuesta = 0;
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     
-    public void limiteSesion(String codigo, int num){
+    public void limiteSesion(String codigo, int num) throws ClassNotFoundException{
         String sql = "UPDATE usuario SET sesion_activa=" + num + "  where codigousuario='" + codigo + "'";
-        int respuesta = 0;
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     
@@ -282,7 +264,7 @@ public class UsuarioDao {
     /*******
     *crear codigo de forma automatica
     ********/
-    public String condigo() {
+    public String condigo() throws ClassNotFoundException {
         String sql = "";
         int consContador = 0;
         int contador = contadorFilas();
@@ -298,7 +280,7 @@ public class UsuarioDao {
                 while (rs.next()) {
                     consContador = rs.getInt(1);
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         } while (consContador == 1);
         return codigo;
@@ -316,9 +298,8 @@ public class UsuarioDao {
         }
     }
     
-    private int contadorFilas() {
+    private int contadorFilas() throws ClassNotFoundException {
         String sql = "SELECT COUNT(*)FROM USUARIO";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();
@@ -327,7 +308,7 @@ public class UsuarioDao {
             while (rs.next()) {
                 contador = rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return contador;
     }

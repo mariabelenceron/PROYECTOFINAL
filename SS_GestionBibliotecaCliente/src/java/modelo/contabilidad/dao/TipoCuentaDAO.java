@@ -60,37 +60,6 @@ public class TipoCuentaDAO {
         return respuesta;
     }
     
-    public int actualizar(TipoCuenta tc){
-        int respuesta =0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
-        }*/
-        return respuesta;
-    }
-    
-    public void borrar(String codigo){
-        String sql = "DELETE FROM TIPOCUENTA WHERE CODIGOTIPCUENTA='"+codigo+"'";
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.executeQuery();
-        } catch (Exception e) {
-        }
-    }
-    
-    
     public TipoCuenta buscarCodigo(String codigo){
         String sql = "select * from TIPOCUENTA where CODIGOTIPCUENTA= '"+codigo+"'";
         TipoCuenta tc = new TipoCuenta();
@@ -164,7 +133,6 @@ public class TipoCuentaDAO {
     
     private int contadorFilas() {
         String sql = "SELECT COUNT(*)FROM TIPOCUENTA";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();

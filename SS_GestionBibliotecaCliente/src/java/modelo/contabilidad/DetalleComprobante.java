@@ -9,7 +9,6 @@ package modelo.contabilidad;
  * @author alexg
  */
 public class DetalleComprobante{
-    //private String codigoDetalle;
     private String codigoComprobante;
     private String codigoCuenta;
     private float debeDetalle;

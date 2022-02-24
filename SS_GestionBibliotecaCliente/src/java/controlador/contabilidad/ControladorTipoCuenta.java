@@ -36,7 +36,6 @@ public class ControladorTipoCuenta extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -82,12 +81,7 @@ public class ControladorTipoCuenta extends HttpServlet {
             String nombre = request.getParameter("nombreTipCue");
             tc.setCodigo(codigo);
             tc.setNombre(nombre);
-            int r = dao.agregar(tc);
-            response.sendRedirect("vistas/contabilidad/TipoCuenta.jsp");
-            
-        }else if(accion.compareTo("Borrar")==0){         
-            String id = request.getParameter("id");//id codigo del tipo cuenta
-            dao.borrar(id);
+            dao.agregar(tc);
             response.sendRedirect("vistas/contabilidad/TipoCuenta.jsp");
             
         }else{

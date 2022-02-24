@@ -1,6 +1,6 @@
-projectKey=AnalisisProyectoBibliotecaPrueba2
+projectKey=AnalisisProyectoBiblioteca
 serverUrl=http://localhost:9000
 serverVersion=9.1.0.47736
-dashboardUrl=http://localhost:9000/dashboard?id=AnalisisProyectoBibliotecaPrueba2
-ceTaskId=AX8kJLUCV_FoOjCjym-4
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX8kJLUCV_FoOjCjym-4
+dashboardUrl=http://localhost:9000/dashboard?id=AnalisisProyectoBiblioteca
+ceTaskId=AX8pQGQS8P_YUGRkOeb9
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX8pQGQS8P_YUGRkOeb9

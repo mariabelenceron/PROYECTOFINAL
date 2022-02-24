@@ -21,6 +21,7 @@ public class Encrypt implements Serializable {
     private static final String saltAES = "alex1234";
 
     public Encrypt() {
+        // Es el constructor
     }
 
     public String getAES(String data) {
@@ -37,7 +38,7 @@ public class Encrypt implements Serializable {
                 SecretKeySpec secretKey = new SecretKeySpec(secretKeyTemp.getEncoded(), "AES");
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
-                return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes("UTF-8")));
+                return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)));
             }else{
                 return "Error";
             }

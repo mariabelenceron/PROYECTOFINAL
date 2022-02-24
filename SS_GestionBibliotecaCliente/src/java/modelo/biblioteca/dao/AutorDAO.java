@@ -7,12 +7,11 @@ package modelo.biblioteca.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.bd.Conexion;
 import modelo.biblioteca.Autor;
-import modelo.biblioteca.Libro;
-import modelo.usuario.Encrypt;
 
 /**
  *
@@ -25,7 +24,7 @@ public class AutorDAO {
     Conexion c = new Conexion();
     Connection con;
     
-    public List listar() {
+    public List listar() throws ClassNotFoundException {
         List<Autor> lista = new ArrayList<>();
         String sql = "select * from autor";
 
@@ -40,12 +39,12 @@ public class AutorDAO {
                 a.setApellido(rs.getString(3));
                 lista.add(a);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
 
-    public int agregar(Autor a) {
+    public int agregar(Autor a) throws ClassNotFoundException {
         int respuesta = 0;
         String sql = "INSERT INTO AUTOR (CODIGOAUTOR, NOMBREAUTOR, APELLIDOAUTOR) VALUES(?,?,?)";
        
@@ -61,12 +60,12 @@ public class AutorDAO {
             } else {
                 respuesta = 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return respuesta;
     }
 
-    public int actualizar(Autor a) {
+    public int actualizar(Autor a) throws ClassNotFoundException {
         int respuesta = 0;
         String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
         try {
@@ -81,22 +80,22 @@ public class AutorDAO {
             } else {
                 respuesta = 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return respuesta;
     }
 
-    public void borrar(String codigo) {
+    public void borrar(String codigo) throws ClassNotFoundException {
         String sql = "DELETE FROM AUTOR WHERE CODIGOAUTOR='" + codigo + "'";
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 
-    public Autor buscarCodigo(String codigo) {
+    public Autor buscarCodigo(String codigo) throws ClassNotFoundException {
         String sql = "select * from AUTOR where codigoautor= '" + codigo + "'";
         Autor a = new Autor();
         try {
@@ -108,12 +107,12 @@ public class AutorDAO {
                 a.setNombre(rs.getString(2));
                 a.setApellido(rs.getString(3));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return a;
     }
 
-    public List buscarNombre(String nombre) {
+    public List buscarNombre(String nombre) throws ClassNotFoundException {
         List<Autor> lista = new ArrayList<>();
         String sql = "select * from autor where NOMBREAUTOR like '%" + nombre + "%'";
 
@@ -128,7 +127,7 @@ public class AutorDAO {
                 a.setApellido(rs.getString(3));
                 lista.add(a);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
@@ -136,7 +135,7 @@ public class AutorDAO {
     /*******
     *crear codigo de forma automatica
     ********/
-    public String condigo() {
+    public String condigo() throws ClassNotFoundException {
         String sql = "";
         int consContador = 0;
         int contador = contadorFilas();
@@ -152,7 +151,7 @@ public class AutorDAO {
                 while (rs.next()) {
                     consContador = rs.getInt(1);
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         } while (consContador == 1);
         return codigo;
@@ -170,9 +169,8 @@ public class AutorDAO {
         }
     }
     
-    private int contadorFilas() {
+    private int contadorFilas() throws ClassNotFoundException {
         String sql = "SELECT COUNT(*)FROM AUTOR";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();
@@ -181,7 +179,7 @@ public class AutorDAO {
             while (rs.next()) {
                 contador = rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return contador;
     }

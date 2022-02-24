@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controlador.biblioteca;
 
 import java.io.IOException;
@@ -36,7 +32,6 @@ public class ControladorAutor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -85,7 +80,7 @@ public class ControladorAutor extends HttpServlet {
             a.setCodigo(codigo);
             a.setNombre(nombre);
             a.setApellido(apellido);
-            int r = dao.agregar(a);
+            dao.agregar(a);
             response.sendRedirect("vistas/biblioteca/Autor.jsp");
             
         }else if(accion.compareTo("Borrar")==0){         
@@ -97,35 +92,16 @@ public class ControladorAutor extends HttpServlet {
             String codigo = request.getParameter("codigoAutor1");
             String nombre = request.getParameter("nombreAutor1");
             String apellido = request.getParameter("apellidoAutor1");
-            /*if(codigo.compareTo("A0002")==0){
-                response.sendRedirect("vistas/biblioteca/Libro.jsp");
-            }*/
+
             a.setCodigo(codigo);
             a.setNombre(nombre);
             a.setApellido(apellido);
-            int r = dao.actualizar(a);
+            dao.actualizar(a);
             response.sendRedirect("vistas/biblioteca/Autor.jsp");
         }
         else{
             response.sendRedirect("vistas/biblioteca/Autor.jsp");
         }
-        
-            
-        
-        /*List<Autor>datos =dao.listar();
-        request.setAttribute("datos", datos);
-        switch (accion){
-            case "Listar":
-                List<Autor>autores =dao.listar();
-                request.setAttribute("autores", autores);
-                request.getRequestDispatcher("vistas/biblioteca/Autor.jsp").forward(request, response);
-                break;
-            default:
-                throw new AssertionError();
-        }*/
-        
-        
-        
     }
 
     /**

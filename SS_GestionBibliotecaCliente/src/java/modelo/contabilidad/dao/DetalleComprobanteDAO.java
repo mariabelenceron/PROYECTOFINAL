@@ -64,37 +64,6 @@ public class DetalleComprobanteDAO {
         return respuesta;
     }
     
-    public int actualizar(DetalleComprobante com){
-        int respuesta =0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
-        }*/
-        return respuesta;
-    }
-    
-    public void borrar(String codigo){
-        String sql = "DELETE FROM CUENTA WHERE CODIGOCUENTA='"+codigo+"'";
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.executeQuery();
-        } catch (Exception e) {
-        }
-    }
-    
-    
     public List buscarCodigoComprobante(String codigo){
         String sql = "select * from DETALLECOMPROBANTE where CODIGOCOMPROBANTE = '"+codigo+"'";
         List<DetalleComprobante> lista = new ArrayList<>();
@@ -109,26 +78,6 @@ public class DetalleComprobanteDAO {
                 d.setDebeDetalle(rs.getFloat(3));
                 d.setHaberDetalle(rs.getFloat(4));
                 lista.add(d);  
-            }
-        } catch (Exception e) {
-        }
-        return lista;
-    }
-    
-    /*public List buscarNombre(String nombre){
-        List<Comprobante> lista = new ArrayList<>();
-        String sql = "select * from cuenta where NOMBRECUENTA like '%"+nombre+"%'";
-        
-        try {
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {                
-                Comprobante com = new Comprobante();
-                com.setCodigoComprobante(rs.getString(1));
-                com.setFecha(rs.getString(2));
-                com.setObservaciones(rs.getString(3));
-                lista.add(com); 
             }
         } catch (Exception e) {
         }
@@ -174,7 +123,6 @@ public class DetalleComprobanteDAO {
     
     private int contadorFilas() {
         String sql = "SELECT COUNT(*)FROM CUENTA";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();

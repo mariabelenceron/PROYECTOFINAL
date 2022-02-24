@@ -37,7 +37,6 @@ public class ControladorPrestamo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -92,7 +91,7 @@ public class ControladorPrestamo extends HttpServlet {
             l.setISBN(isbn);
             l.setTitulo(titulo);
             l.setValorPrestamo(valorPrestamo);
-            int r = dao.agregar(l);
+            dao.agregar(l);
             response.sendRedirect("vistas/biblioteca/Prestamos.jsp");
 
 
@@ -115,16 +114,4 @@ public class ControladorPrestamo extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static boolean validarNumeroFloat(String numero) {
-        boolean isValid = true;
-
-        try {
-            Double.parseDouble(numero);
-        } catch (NumberFormatException nfe) {
-            isValid = false;
-        }
-
-        return isValid;
-    }
 }

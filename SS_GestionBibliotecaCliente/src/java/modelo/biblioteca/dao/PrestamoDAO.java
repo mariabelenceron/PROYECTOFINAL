@@ -7,6 +7,7 @@ package modelo.biblioteca.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.bd.Conexion;
@@ -22,7 +23,7 @@ public class PrestamoDAO {
     Conexion c =new Conexion();
     Connection con;
     
-    public List listar(){
+    public List listar() throws ClassNotFoundException{
         List<Prestamo> lista = new ArrayList<>();
         String sql = "select * from PRESTAMO";
         
@@ -38,12 +39,12 @@ public class PrestamoDAO {
                 p.setDescripcion(rs.getString(4));
                 lista.add(p);  
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
     
-    public int agregar(Prestamo p){
+    public int agregar(Prestamo p) throws ClassNotFoundException{
         int respuesta =0;
         String sql = "INSERT INTO PRESTAMO (CODIGOPRESTAMO, FECHAPRETAMO, NOMBRECLPRESTAMO, DESCRIPCIONPRESTAMO) VALUES(?,?,?,?)";
         
@@ -60,43 +61,23 @@ public class PrestamoDAO {
             }else{
                 respuesta = 0;
             }
-        }catch (Exception e){
+        }catch (SQLException e){
         }
         return respuesta;
     }
     
-    public int actualizar(Prestamo p){
-        int respuesta =0;
-        /*String sql = "UPDATE AUTOR SET CODIGOAUTOR=?, NOMBREAUTOR=?, APELLIDOAUTOR=? WHERE CODIGOAUTOR=?";
-        try{
-            con = c.conectar();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, cu.getCodigoCuenta());
-            ps.setString(2, cu.getCodigoTipoCuenta());
-            ps.setString(3, cu.getNombre());;
-            respuesta = ps.executeUpdate();
-            if(respuesta == 1){
-                respuesta = 1;
-            }else{
-                respuesta = 0;
-            }
-        }catch (Exception e){
-        }*/
-        return respuesta;
-    }
-    
-    public void borrar(String codigo){
+    public void borrar(String codigo) throws ClassNotFoundException{
         String sql = "DELETE FROM CUENTA WHERE CODIGOCUENTA='"+codigo+"'";
         try {
             con = c.conectar();
             ps = con.prepareStatement(sql);
             ps.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     
     
-    public Prestamo buscarCodigo(String codigo){
+    public Prestamo buscarCodigo(String codigo) throws ClassNotFoundException{
         String sql = "select * from PRESTAMO where CODIGOPRESTAMO= '"+codigo+"'";
         Prestamo p = new Prestamo();
         try {
@@ -109,12 +90,12 @@ public class PrestamoDAO {
                 p.setNombreCliente(rs.getString(3));
                 p.setDescripcion(rs.getString(4));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return p;
     }
     
-    public List buscarNombre(String nombre){
+    public List buscarNombre(String nombre) throws ClassNotFoundException{
         List<Prestamo> lista = new ArrayList<>();
         String sql = "select * from cuenta where NOMBRECUENTA like '%"+nombre+"%'";
         
@@ -130,7 +111,7 @@ public class PrestamoDAO {
                 p.setDescripcion(rs.getString(4));
                 lista.add(p); 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return lista;
     }
@@ -138,7 +119,7 @@ public class PrestamoDAO {
     /*******
     *crear codigo de forma automatica
     ********/
-    public String condigo() {
+    public String condigo() throws ClassNotFoundException {
         String sql = "";
         int consContador = 0;
         int contador = contadorFilas();
@@ -154,7 +135,7 @@ public class PrestamoDAO {
                 while (rs.next()) {
                     consContador = rs.getInt(1);
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         } while (consContador == 1);
         return codigo;
@@ -172,9 +153,8 @@ public class PrestamoDAO {
         }
     }
     
-    private int contadorFilas() {
+    private int contadorFilas() throws ClassNotFoundException {
         String sql = "SELECT COUNT(*)FROM PRESTAMO";
-        //"select * from AUTOR where codigoautor= '"+codigo+"'";
         int contador = 0;
         try {
             con = c.conectar();
@@ -183,7 +163,7 @@ public class PrestamoDAO {
             while (rs.next()) {
                 contador = rs.getInt(1);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return contador;
     }
